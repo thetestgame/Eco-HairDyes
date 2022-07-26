@@ -1,6 +1,7 @@
 ﻿
 namespace Eco.HairDye.Server.Items.Tools
 {
+    using Eco.Core.Items;
     using Eco.EM.Artistry;
     using Eco.EM.Framework.Resolvers;
     using Eco.EM.Framework.Utils;
@@ -22,6 +23,7 @@ namespace Eco.HairDye.Server.Items.Tools
 
     [Serialized]
     [Category("Hidden")]
+    [Tag("Tool", 1)]
     public abstract class HairColorBrushToolItem : ToolItem
     {
         private static readonly IDynamicValue caloriesBurn = new MultiDynamicValue(MultiDynamicOps.Multiply, new TalentModifiedValue(typeof(HairColorBrushToolItem), typeof(ToolEfficiencyTalent)), CreateCalorieValue(8, typeof(SelfImprovementSkill), typeof(HairColorBrushToolItem)));
@@ -40,7 +42,7 @@ namespace Eco.HairDye.Server.Items.Tools
             var inventory = context.Player.User.Inventory.ToolbarBackpack;
             var requiredHairDye = ItemUtil.TryGet($"{Color}HairDyeItem");
             if (requiredHairDye == null)
-                return InteractResult.Failure(Localizer.DoStr($"You require {Color} dye in your toolbar but that color does not seem to exist.."));
+                return InteractResult.Failure(Localizer.DoStr($"You require {Color} dye in your toolbar but that color does not seem to exist..."));
 
             Item hairDye = null;
             try
@@ -50,7 +52,7 @@ namespace Eco.HairDye.Server.Items.Tools
             } catch (Exception) { }
 
             if (hairDye == null)
-                return InteractResult.Failure(Localizer.DoStr($"You require {Color} dye in your toolbar to be able to dye your hair.."));
+                return InteractResult.Failure(Localizer.DoStr($"You require {Color} dye in your toolbar to be able to dye your hair..."));
 
             // After everything is good, Finish the action
             context.Player.User.Avatar.HairColor = new Color(Constants.ColorToHex[this.Color.ToLower()]);
@@ -64,7 +66,7 @@ namespace Eco.HairDye.Server.Items.Tools
             hairDyeItem.Durability -= 1;
             if (hairDyeItem.Durability == 0)
                 inventory.RemoveItem(hairDye.GetType());
-            return InteractResult.Success;
+            return InteractResult.SuccessLoc($"You've succesfully dyed your hair {Color}.");
         }
 
         public override string OnUsed(Player player, ItemStack itemStack)
@@ -89,7 +91,8 @@ namespace Eco.HairDye.Server.Items.Tools
     [LocDisplayName("Hair Color Brush")]
     [Category("Tool")]
     [MaxStackSize(1)]
-    
+    [Ecopedia("Items", "Tools", createAsSubPage: true, display: InPageTooltip.DynamicTooltip)]
+
     public partial class HairColorBrushItem : HairColorBrushToolItem
     {
         public override string Color => "";
