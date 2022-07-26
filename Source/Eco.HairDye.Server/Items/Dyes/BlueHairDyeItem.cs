@@ -1,6 +1,7 @@
 ﻿
 namespace Eco.HairDye.Server.Items.Dyes
 {
+    using Eco.Core.Items;
     using Eco.EM.Artistry;
     using Eco.EM.Framework.Resolvers;
     using Eco.Gameplay.Components;
@@ -17,6 +18,7 @@ namespace Eco.HairDye.Server.Items.Dyes
     [Currency]
     [MaxStackSize(100)]
     [LocDisplayName("Blue Hair Dye")]
+    [Ecopedia("Items", "Hair Dyes", createAsSubPage: true, display: InPageTooltip.DynamicTooltip)]
     public partial class BlueHairDyeItem : DurabilityItem
     {
         public override LocString DisplayDescription => Localizer.DoStr("Blue hair dye used for dying hair with a Hair Coloring Brush.");
