@@ -16,7 +16,7 @@ namespace Eco.HairDye.Server.Items
             { "grey", "808080" },
             { "orange", "FFA500" },
             { "pink", "FFC0CB" },
-            { "purple", "6a0dad" },
+            { "purple", "855cb3" },
             { "red", "ff0000" },
             { "white", "ffffff" },
             { "yellow", "FFFF00" }
