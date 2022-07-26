@@ -17,7 +17,7 @@ namespace Eco.HairDye.Server.Items.Dyes
     [Currency]
     [MaxStackSize(100)]
     [LocDisplayName("Dark Red Hair Dye")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "Modkit Bug")]
+    
     public partial class DarkRedHairDyeItem : DurabilityItem
     {
         public override LocString DisplayDescription => Localizer.DoStr("Dark Red hair dye used for dying hair with a Hair Coloring Brush.");
@@ -25,9 +25,9 @@ namespace Eco.HairDye.Server.Items.Dyes
         public override IDynamicValue SkilledRepairCost => new ConstantValue(0);
     }
 
-    /*
+    
     [RequiresSkill(typeof(PaintingSkill), 4)]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "Modkit Bug")]
+    
     public partial class DarkRedHairDyeRecipe : RecipeFamily, IConfigurableRecipe
     {
         static RecipeDefaultModel Defaults => new()
@@ -38,8 +38,8 @@ namespace Eco.HairDye.Server.Items.Dyes
             LocalizableName = Localizer.DoStr("Hair Dye - Dark Red"),
             IngredientList = new()
             {
-                new EMIngredient("RedPaintItem", false, 1, true),
-                new EMIngredient("BlackPaintItem", false, 1, true),
+                new EMIngredient("RedDyeItem", false, 1, true),
+                new EMIngredient("BlackDyeItem", false, 1, true),
                 new EMIngredient("PaintBaseItem", false, 2, true),
             },
             ProductList = new()
@@ -69,5 +69,5 @@ namespace Eco.HairDye.Server.Items.Dyes
             this.Initialize(Defaults.LocalizableName, GetType());
             CraftingComponent.AddRecipe(EMRecipeResolver.Obj.ResolveStation(this), this);
         }
-    }*/
+    }
 }

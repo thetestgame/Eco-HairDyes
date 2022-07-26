@@ -22,7 +22,6 @@ namespace Eco.HairDye.Server.Items.Tools
 
     [Serialized]
     [Category("Hidden")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "Modkit Bug")]
     public abstract class HairColorBrushToolItem : ToolItem
     {
         private static readonly IDynamicValue caloriesBurn = new MultiDynamicValue(MultiDynamicOps.Multiply, new TalentModifiedValue(typeof(HairColorBrushToolItem), typeof(ToolEfficiencyTalent)), CreateCalorieValue(8, typeof(SelfImprovementSkill), typeof(HairColorBrushToolItem)));
@@ -90,7 +89,7 @@ namespace Eco.HairDye.Server.Items.Tools
     [LocDisplayName("Hair Color Brush")]
     [Category("Tool")]
     [MaxStackSize(1)]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "Modkit Bug")]
+    
     public partial class HairColorBrushItem : HairColorBrushToolItem
     {
         public override string Color => "";
@@ -98,7 +97,7 @@ namespace Eco.HairDye.Server.Items.Tools
     }
 
     [RequiresSkill(typeof(PaintingSkill), 1)]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "Modkit Bug")]
+    
     public partial class AHairColorBrushRecipe : RecipeFamily, IConfigurableRecipe
     {
         static RecipeDefaultModel Defaults => new()
