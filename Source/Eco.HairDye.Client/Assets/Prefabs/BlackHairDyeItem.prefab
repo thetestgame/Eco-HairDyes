@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8fd07c74bbc0a9c438ce9f523e38b222, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3da3555a1d995be48bcdee825e2f11db, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2942265492882535220, guid: 94b5165ed65b8cf449ff552c3eb108b1, type: 3}
+  m_Sprite: {fileID: -2942265492882535220, guid: 364bdf3580f0d894ebe8b65cfffc2285, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 2406961856312665546}
   m_Layer: 0
   m_Name: BlackHairDyeItem
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,7 +212,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2406961856312665551}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2478943349938514664, guid: b458253abf9c21143982017491344a9d, type: 3}
+  m_Sprite: {fileID: -7604809100121085948, guid: 2d588008c4b3fd749812726cb5ad4439, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
