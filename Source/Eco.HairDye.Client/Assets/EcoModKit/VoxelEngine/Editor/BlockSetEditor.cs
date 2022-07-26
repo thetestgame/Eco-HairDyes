@@ -70,7 +70,7 @@ public class BlockSetEditor : Editor
         blockList.onSelectionChanged += ListView_onSelectionChange;
 #endif
         blockList.itemsSource        =  blockSet.Blocks;
-        blockList.Rebuild();
+        blockList.Refresh();
 
         newBlock.clickable.clicked += NewBlock_Clicked;
         removeBlock.clickable.clicked += RemoveBlock_Clicked;
@@ -93,14 +93,14 @@ public class BlockSetEditor : Editor
         Block newBlock = (Block)Activator.CreateInstance(typeof(Block));
         newBlock.Name = "NewBlock";
         blockSet.Blocks.Add(newBlock);
-        blockList.Rebuild();
+        blockList.Refresh();
     }
 
     private void RemoveBlock_Clicked()
     {
         blockSet.Blocks.Remove(selectedBlock);
         blockList.selectedIndex = -1;
-        blockList.Rebuild();
+        blockList.Refresh();
     }
 
     private void ForceSave_Clicked()
