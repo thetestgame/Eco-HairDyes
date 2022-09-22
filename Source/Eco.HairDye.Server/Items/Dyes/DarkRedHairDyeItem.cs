@@ -1,4 +1,5 @@
-﻿
+﻿// Copyright (c) Jordan Maxwell. All rights reserved.
+// See LICENSE file in the project root for full license information.
 
 namespace Eco.HairDye.Server.Items.Dyes
 {
@@ -20,7 +21,7 @@ namespace Eco.HairDye.Server.Items.Dyes
     [LocDisplayName("Dark Red Hair Dye")]
     [Ecopedia("Items", "Hair Dyes", createAsSubPage: true, display: InPageTooltip.DynamicTooltip)]
 
-    public partial class DarkRedHairDyeItem : DurabilityItem
+    public partial class DarkRedHairDyeItem : RepairableItem
     {
         public override LocString DisplayDescription => Localizer.DoStr("Dark Red hair dye used for dying hair with a Hair Coloring Brush.");
         public new float DurabilityMax => 100;

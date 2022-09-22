@@ -1,4 +1,6 @@
-﻿
+﻿// Copyright (c) Jordan Maxwell. All rights reserved.
+// See LICENSE file in the project root for full license information.
+
 namespace Eco.HairDye.Server.Items.Tools
 {
     using Eco.Core.Items;
@@ -12,6 +14,7 @@ namespace Eco.HairDye.Server.Items.Tools
     using Eco.Gameplay.Players;
     using Eco.Gameplay.Skills;
     using Eco.Gameplay.UI;
+    using Eco.HairDye.Server.Utils;
     using Eco.Mods.TechTree;
     using Eco.Shared.Localization;
     using Eco.Shared.Serialization;
@@ -20,6 +23,8 @@ namespace Eco.HairDye.Server.Items.Tools
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
+    using System.Reflection;
+    using System.Text.RegularExpressions;
 
     [Serialized]
     [Category("Hidden")]
@@ -44,25 +49,20 @@ namespace Eco.HairDye.Server.Items.Tools
             if (requiredHairDye == null)
                 return InteractResult.Failure(Localizer.DoStr($"You require {Color} dye in your toolbar but that color does not seem to exist..."));
 
-            Item hairDye = null;
-            try
-            {
-                var inventoryQuery = inventory.AllParentsAndSelf.SelectMany(i => i.Stacks.Where(itm => itm.Item.DisplayName.ToLower() == requiredHairDye.DisplayName.ToLower()));
-                hairDye = inventoryQuery.First().Item;
-            } catch (Exception) { }
-
+            Item hairDye = inventory.FindInInventory(requiredHairDye);
             if (hairDye == null)
                 return InteractResult.Failure(Localizer.DoStr($"You require {Color} dye in your toolbar to be able to dye your hair..."));
 
             // After everything is good, Finish the action
-            context.Player.User.Avatar.HairColor = new Color(Constants.ColorToHex[this.Color.ToLower()]);
-            context.Player.User.Avatar.HasBeenEdited = true;
+            var avatar = context.Player.User.Avatar;
+            var chosenColor = new Color(Constants.ColorToHex[this.Color.ToLower()]);
+            avatar.SaveHairColor(context.Player, chosenColor);
 
             BurnCaloriesNow(context.Player);
             UseDurability(DurabilityRate, context.Player);
 
             // Remove durability from the Hair Dye
-            var hairDyeItem = hairDye as DurabilityItem;
+            var hairDyeItem = hairDye as RepairableItem;
             hairDyeItem.Durability -= 1;
             if (hairDyeItem.Durability == 0)
                 inventory.RemoveItem(hairDye.GetType());
@@ -77,7 +77,7 @@ namespace Eco.HairDye.Server.Items.Tools
 
         private void SetMaterial(List<Type> result, Player player, Item heldHairColorBrush)
         {
-            var tool = Get(result[0]) as DurabilityItem;
+            var tool = Get(result[0]) as RepairableItem;
 
             player.User.Inventory.ToolbarBackpack.AddItem(tool);
             tool.Durability = Durability;
