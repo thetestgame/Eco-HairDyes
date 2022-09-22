@@ -49,13 +49,7 @@ namespace Eco.HairDye.Server.Items.Tools
             if (requiredHairDye == null)
                 return InteractResult.Failure(Localizer.DoStr($"You require {Color} dye in your toolbar but that color does not seem to exist..."));
 
-            Item hairDye = null;
-            try
-            {
-                var inventoryQuery = inventory.AllParentsAndSelf.SelectMany(i => i.Stacks.Where(itm => itm.Item.DisplayName.ToLower() == requiredHairDye.DisplayName.ToLower()));
-                hairDye = inventoryQuery.First().Item;
-            } catch (Exception) { }
-
+            Item hairDye = inventory.FindInInventory(requiredHairDye);
             if (hairDye == null)
                 return InteractResult.Failure(Localizer.DoStr($"You require {Color} dye in your toolbar to be able to dye your hair..."));
 
